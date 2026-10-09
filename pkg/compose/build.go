@@ -419,7 +419,7 @@ func (s *composeService) toBuildOptions(project *types.Project, service types.Se
 
 	sessionConfig := []session.Attachable{
 		authprovider.NewDockerAuthProvider(authprovider.DockerAuthProviderConfig{
-			ConfigFile: s.configFile(),
+			AuthConfigProvider: authprovider.LoadAuthConfig(s.configFile()),
 		}),
 	}
 	if len(options.SSHs) > 0 || len(service.Build.SSH) > 0 {
